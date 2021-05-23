@@ -7,8 +7,8 @@ const initialState = {
 export const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_TEXT:
-            return {...state, texts: state.texts.concat([action.payload])}
+            return { texts: [...state.texts, action.payload]};
         default:
-            return state
+            return state;
     }
 }

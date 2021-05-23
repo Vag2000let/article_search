@@ -3,16 +3,16 @@ import {connect} from "react-redux";
 import {Text} from "./Text";
 
 
-const Texts = (syncTexts) => {
+const Texts = ({syncTexts}) => {
     if (!syncTexts.length) {
-      return <p>Нет ничего</p>
+      return <li>Нет ничего</li>
     }
-    return syncTexts.map(title => <Text title={title} />)
+    return syncTexts.map((item) => <Text key={item.title} texts={item.title} />);
 }
 
 const makeStateToProps = (state) => {
     return {
-        syncTexts: state
+        syncTexts: state.texts
     }
 }
 

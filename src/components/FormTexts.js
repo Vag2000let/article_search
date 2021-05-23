@@ -2,7 +2,8 @@ import React from "react";
 import {connect} from "react-redux";
 import {Button, IconButton, InputBase, Paper} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import createText from "./actions";
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import createText from "../actions";
 import Texts from "./Texts";
 
 
@@ -50,11 +51,14 @@ class FormTexts extends React.Component {
                         placeholder="Введите запрос"
                         onChange={this.changeInputText}
                     />
+                    <IconButton aria-label="delete">
+                        <CancelOutlinedIcon onClick={() => this.setState({title: ""})}/>
+                    </IconButton>
                     <IconButton type={"submit"} className={"iconButton"} aria-label="search">
                         <SearchIcon/>
                     </IconButton>
                 </Paper>
-                <div className={"app"}>
+                <div className={"texts"}>
                     <Texts />
                 </div>
             </div>

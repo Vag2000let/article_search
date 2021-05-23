@@ -33,3 +33,12 @@ code {
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
 }
+
+.texts {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.texts li {
+    list-style-type: none;
+}

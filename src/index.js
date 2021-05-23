@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import './index.css';
-import FormTexts from './FormTexts';
+import FormTexts from './components/FormTexts';
 import reportWebVitals from './reportWebVitals';
 import {compose, createStore} from "redux";
 import {rootReducer} from "./rootReducer";
