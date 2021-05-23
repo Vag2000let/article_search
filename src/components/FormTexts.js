@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Button, IconButton, InputBase, Paper} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import createText from "../actions";
+import createText from "../redux/actions";
 import Texts from "./Texts";
 
 

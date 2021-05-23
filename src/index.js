@@ -4,7 +4,7 @@ import './index.css';
 import FormTexts from './components/FormTexts';
 import reportWebVitals from './reportWebVitals';
 import {compose, createStore} from "redux";
-import {rootReducer} from "./rootReducer";
+import {rootReducer} from "./redux/rootReducer";
 import {Provider} from "react-redux";
 
 
