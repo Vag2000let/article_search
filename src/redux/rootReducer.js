@@ -1,7 +1,7 @@
 import {CREATE_TEXT} from "./types";
 
 const initialState = {
-    texts: []
+    texts: [],
 }
 
 export const rootReducer = (state = initialState, action) => {

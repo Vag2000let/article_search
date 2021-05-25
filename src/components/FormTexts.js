@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Button, IconButton, InputBase, Paper} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import createText from "../redux/actions";
+import {createText, fetchText} from "../redux/actions";
 import Texts from "./Texts";
 
 
@@ -17,6 +17,10 @@ class FormTexts extends React.Component {
         event.preventDefault();
 
         const {title} = this.state
+
+        if (!title.trim()) {
+            return
+        }
 
         const newTitle = {
             title, id: Date.now().toString()
@@ -51,8 +55,14 @@ class FormTexts extends React.Component {
                         placeholder="Введите запрос"
                         onChange={this.changeInputText}
                     />
-                    <IconButton aria-label="delete">
-                        <CancelOutlinedIcon onClick={() => this.setState({title: ""})}/>
+                    <IconButton
+                        aria-label="delete"
+                        onClick={() => this.setState({title: ""})}
+                    >
+                        <CancelOutlinedIcon
+                            fontSize={"small"}
+                            className={"button-clear"}
+                        />
                     </IconButton>
                     <IconButton type={"submit"} className={"iconButton"} aria-label="search">
                         <SearchIcon/>
@@ -61,6 +71,7 @@ class FormTexts extends React.Component {
                 <div className={"texts"}>
                     <Texts />
                 </div>
+                <Button variant="contained" onClick={fetchText}>Загрузить</Button>
             </div>
         );
     }
