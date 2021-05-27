@@ -1,20 +1,23 @@
-export default function fetchText(search) {
+export default function fetchText (search) {
   let wikiItems = []
   let url = "https://en.wikipedia.org/w/api.php";
   const params = {
+    origin: "*",
     action: "query",
     srsearch: search,
     list: "search",
     limit: "5",
     namespace: "0",
     format: "json",
+    prop: "info",
+    inprop: "url",
   };
 
-  url = url + "?origin=*";
+  // url = `${url}?${new URLSearchParams(params)} `;
+  url = url + "?";
   Object.keys(params).forEach((key) => {
     url += "&" + key + "=" + params[key];
   });
-  // const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
   fetch(url)
     .then(function (response) {
       return response.json();
@@ -35,9 +38,8 @@ export default function fetchText(search) {
       for (let key2 in wikiItems) {
         let page = wikiItems[key2]
         let pageID = page.wikiPageId
-        let pageUrlpageId = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${pageID}&
-        inprop=url&format=json`;
-        // console.log("i am pageUrlpageId", pageUrlpageId)
+        let pageUrlpageId = `${url + "&pageids=" + pageID}`
+        console.log("i am pageUrlpageId", pageUrlpageId)
         fetch(pageUrlpageId)
           .then(function (response) {
             return response.json()
@@ -51,4 +53,5 @@ export default function fetchText(search) {
       console.log(e)
     })
   console.log("i am wikiItems", wikiItems)
+  return wikiItems
 }
