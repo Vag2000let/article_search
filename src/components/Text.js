@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Text = ({texts}) => {
-    return (
-        <li>{texts}</li>
-    )
+  return (
+    <li>{texts}</li>
+  )
 }
