@@ -21,17 +21,14 @@ const fetchText = (search) => {
   fetch(url)
   .then(async (response) => response.json())
     .then(response => {
-      for (let s in response) {
-        wiki.push({
-          title: response[1][s],
-          url: response[3][s]
-        })
-      }
-      console.log('i am wikiItems', wiki)
-    })
+      response.forEach((item, key) => wiki.push({
+        title: response[1][key],
+        url: response[3][key]
+      }))})
     .catch(function (e) {
       console.log(e)
     })
+  console.log('i am wikiItems', wiki)
   return wiki
 }
 
@@ -39,4 +36,4 @@ const getWikiItems = async (dispatch) => {
   dispatch(fetchWiki(await fetchText))
 }
 
-export default connect(getWikiItems)(fetchText);
+export default connect(null, getWikiItems)(fetchText);
