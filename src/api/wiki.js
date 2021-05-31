@@ -1,57 +1,42 @@
-export default function fetchText (search) {
-  let wikiItems = []
+import React from "react";
+import {connect} from "react-redux";
+
+
+const fetchText = (search) => {
+  const wiki = []
+
   let url = "https://en.wikipedia.org/w/api.php";
   const params = {
     origin: "*",
-    action: "query",
-    srsearch: search,
-    list: "search",
-    limit: "5",
-    namespace: "0",
+    action: "opensearch",
     format: "json",
-    prop: "info",
-    inprop: "url",
+    search: search,
+    namespace: "0",
+    limit: "5",
   };
 
-  // url = `${url}?${new URLSearchParams(params)} `;
-  url = url + "?";
-  Object.keys(params).forEach((key) => {
-    url += "&" + key + "=" + params[key];
-  });
+  url = `${url}?${new URLSearchParams(params)} `;
+
   fetch(url)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (response) {
-      // console.log("pageid", response.query.pages[0])
-      for (let key in response.query.search) {
-        wikiItems.push({
-          wikiUrl: 'link',
-          wikiPageId: response.query.search[key].pageid,
-          wikiPageSnipped: response.query.search[key].snippet,
-          wikiTitle: response.query.search[key].title
-        });
-        // console.log("i am wikiItems", wikiItems)
+  .then(async (response) => response.json())
+    .then(response => {
+      for (let s in response) {
+        wiki.push({
+          title: response[1][s],
+          url: response[3][s]
+        })
       }
-    })
-    .then(function (response) {
-      for (let key2 in wikiItems) {
-        let page = wikiItems[key2]
-        let pageID = page.wikiPageId
-        let pageUrlpageId = `${url + "&pageids=" + pageID}`
-        console.log("i am pageUrlpageId", pageUrlpageId)
-        fetch(pageUrlpageId)
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (response) {
-            page.wikiUrl = response.query.pages[pageID].fullurl
-          })
-      }
+      console.log('i am wikiItems', wiki)
     })
     .catch(function (e) {
       console.log(e)
     })
-  console.log("i am wikiItems", wikiItems)
-  return wikiItems
+  return wiki
 }
+
+const makeStateToProps = (state) => {
+  console.log(state)
+  return state
+}
+
+export default connect(makeStateToProps, null)(fetchText)

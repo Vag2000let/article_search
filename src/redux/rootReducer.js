@@ -1,13 +1,16 @@
-import {CREATE_TEXT} from "./types";
+import {CREATE_TEXT, FETCH_TEXT} from "./types";
 
 const initialState = {
-  texts: []
+  texts: [],
+  fetchTexts: []
 }
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_TEXT:
       return {texts: [...state.texts, action.payload]};
+    case FETCH_TEXT:
+      return {fetchTexts: [...state.fetchTexts, action.payload]};
     default:
       return state;
   }

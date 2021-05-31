@@ -4,14 +4,21 @@ import {Button, IconButton, InputBase, Paper} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import Texts from "./Texts";
-import {createText} from "../redux/actions";
+import {createText, fetchWiki} from "../redux/actions";
 import fetchText from "../api/wiki";
+import wiki from "../api/wiki";
 
 
 class FormTexts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {title: ''}
+    this.state = {
+      title: ''
+    }
+    this.state.fetchTexts = {
+      title: '',
+      url: ''
+    }
   }
 
   submitHandler = event => {
@@ -40,7 +47,7 @@ class FormTexts extends React.Component {
   }
 
   fetchHandler = (e) => {
-    fetchText(this.state.title);
+    fetchText(this.state.title)
   };
 
   render() {
@@ -90,7 +97,8 @@ class FormTexts extends React.Component {
 }
 
 const mapDispatchToProps = {
-  createText
+  createText,
+  fetchWiki
 }
 
 export default connect(null, mapDispatchToProps)(FormTexts);
