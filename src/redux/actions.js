@@ -8,9 +8,9 @@ export function createText(title) {
   }
 }
 
-export function fetchWiki(title, url) {
+export function fetchWiki(wiki) {
   return {
     type: FETCH_TEXT,
-    payload: title, url
+    payload: wiki
   }
 }

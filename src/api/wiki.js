@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {fetchWiki} from "../redux/actions";
 
 
 const fetchText = (search) => {
@@ -34,9 +35,8 @@ const fetchText = (search) => {
   return wiki
 }
 
-const makeStateToProps = (state) => {
-  console.log(state)
-  return state
+const getWikiItems = async (dispatch) => {
+  dispatch(fetchWiki(await fetchText))
 }
 
-export default connect(makeStateToProps, null)(fetchText)
+export default connect(getWikiItems)(fetchText);
