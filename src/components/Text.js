@@ -1,7 +1,7 @@
 import React from "react";
 
-export const Text = ({texts}) => {
+export const Text = ({fetchTexts}) => {
   return (
-    <li>{texts}</li>
+    <li>{fetchTexts}</li>
   )
 }

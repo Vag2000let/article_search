@@ -7,12 +7,12 @@ const Texts = ({syncTexts}) => {
   if (!syncTexts.length) {
     return <li>Нет ничего</li>
   }
-  return syncTexts.map((item) => <Text key={item.title} texts={item.title}/>);
+  return syncTexts.map((item) => <Text key={item.title} fetchTexts={item.url}/>);
 }
 
 const makeStateToProps = (state) => {
   return {
-    syncTexts: state.texts
+    syncTexts: state.fetchTexts
   }
 }
 

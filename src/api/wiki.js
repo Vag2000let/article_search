@@ -1,11 +1,9 @@
-import React from "react";
 import {connect} from "react-redux";
 import {fetchWiki} from "../redux/actions";
 
 
 const fetchText = (search) => {
   const wiki = []
-
   let url = "https://en.wikipedia.org/w/api.php";
   const params = {
     origin: "*",
@@ -28,12 +26,21 @@ const fetchText = (search) => {
     .catch(function (e) {
       console.log(e)
     })
-  console.log('i am wikiItems', wiki)
+  console.log('i am wiki', wiki)
   return wiki
 }
 
-const getWikiItems = async (dispatch) => {
-  dispatch(fetchWiki(await fetchText))
+// export function getWikiItems(getState, dispatch, search) {
+//   dispatch(fetchWiki(fetchText(search)))
+// }
+export const getWikiItems = (getState, dispatch, search) => {
+  fetchText(search).then(result => dispatch(fetchWiki(result)))
 }
 
-export default connect(null, getWikiItems)(fetchText);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getWikiItems: search => dispatch(getWikiItems(search))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(fetchText);
