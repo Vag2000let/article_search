@@ -1,18 +1,69 @@
-import React from "react";
 import {connect} from "react-redux";
-import {Text} from "./Text";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 
-const Texts = ({syncTexts}) => {
-  if (!syncTexts.length) {
-    return <li>Нет ничего</li>
+function Texts({wikiTexts}) {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(1),
+      textAlign: 'center',
+      fontSize: "1em",
+      color: theme.palette.text.secondary,
+      justifyContent: "flex-start"
+    },
+  }));
+  const classes = useStyles();
+
+  if (wikiTexts === undefined || wikiTexts.length === 0) {
+    return (
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>Результатов пока нет</Paper>
+          </Grid>
+        </Grid>
+      </div>
+    )
   }
-  return syncTexts.map((item) => <Text key={item.title} fetchTexts={item.url}/>);
+  const wikiTitle = (
+    wikiTexts.map(title =>
+      <Paper key={title.index} className={classes.paper}>
+        {title.title}
+      </Paper>
+    )
+  )
+  const wikiURL = (
+    <Grid>
+      {wikiTexts.map(url =>
+        <Paper key={url.index} className={classes.paper}>
+          {url.url}
+        </Paper>
+      )}
+    </Grid>
+  )
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={10}>
+        <Grid item xs={6}>
+          {wikiTitle}
+        </Grid>
+        <Grid item xs={6}>
+          {wikiURL}
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
 const makeStateToProps = (state) => {
   return {
-    syncTexts: state.fetchTexts
+    wikiTexts: state.fetchTexts
   }
 }
 

@@ -10,7 +10,7 @@ export const rootReducer = (state = initialState, action) => {
     case CREATE_TEXT:
       return {texts: [...state.texts, action.payload]};
     case FETCH_TEXT:
-      return {fetchTexts: [...state.fetchTexts, action.payload]};
+      return {fetchTexts: action.payload};
     default:
       return state;
   }

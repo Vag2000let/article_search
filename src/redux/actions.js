@@ -8,9 +8,14 @@ export function createText(title) {
   }
 }
 
-export function fetchWiki(wiki) {
-  return {
-    type: FETCH_TEXT,
-    payload: wiki
+export function fetchWiki(search) {
+  const url = `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search=${search}&namespace=0&limit=5`;
+
+  return async dispatch => {
+    const response = await fetch(url);
+    const json = await response.json();
+    const wiki = []
+    json.forEach((item, key) => wiki.push({title: json[1][key], url: json[3][key]}));
+    dispatch({type: FETCH_TEXT, payload: wiki})
   }
 }

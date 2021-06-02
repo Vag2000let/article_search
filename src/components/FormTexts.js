@@ -3,9 +3,8 @@ import {connect} from "react-redux";
 import {Button, IconButton, InputBase, Paper} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import Texts from "./Texts";
 import {createText, fetchWiki} from "../redux/actions";
-import fetchText from "../api/wiki"
+import DenseTable from "./Texts";
 
 class FormTexts extends React.Component {
   constructor(props) {
@@ -41,8 +40,8 @@ class FormTexts extends React.Component {
   }
 
   fetchHandler = (e) => {
-    this.props.getWikiItems(this.state.title)
-    // console.log(this.props.getWikiItems)
+    const search = this.state.title
+    this.props.fetchWiki(search)
   };
 
   render() {
@@ -84,15 +83,17 @@ class FormTexts extends React.Component {
           </IconButton>
         </Paper>
         <div className={"texts"}>
-          <Texts/>
+          <DenseTable/>
         </div>
       </div>
     );
   }
 }
 
+
 const mapDispatchToProps = {
   createText,
+  fetchWiki
 }
 
 export default connect(null, mapDispatchToProps)(FormTexts);
