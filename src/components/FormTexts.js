@@ -4,7 +4,7 @@ import {Button, IconButton, InputBase, Paper} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import {createText, fetchWiki} from "../redux/actions";
-import DenseTable from "./Texts";
+import Texts from "./Texts";
 
 class FormTexts extends React.Component {
   constructor(props) {
@@ -44,11 +44,10 @@ class FormTexts extends React.Component {
     this.props.fetchWiki(search)
   };
 
+
   render() {
     return (
       <div className={"app"}>
-        <Button className={"button"} variant="contained">RU</Button>
-        <Button className={"button"} variant="contained">EN</Button>
         <Paper
           component={"form"}
           className={"MuiPaper-rounded"}
@@ -64,6 +63,8 @@ class FormTexts extends React.Component {
             placeholder="Введите запрос"
             onChange={this.changeInputText}
           />
+          <Button className={"button"} variant="text" size={"small"}>RU</Button>
+          <Button className={"button"} variant="text" size={"small"}>EN</Button>
           <IconButton
             aria-label="delete"
             onClick={() => this.setState({title: ""})}
@@ -82,9 +83,7 @@ class FormTexts extends React.Component {
             <SearchIcon/>
           </IconButton>
         </Paper>
-        <div className={"texts"}>
-          <DenseTable/>
-        </div>
+        <Texts/>
       </div>
     );
   }
@@ -93,7 +92,7 @@ class FormTexts extends React.Component {
 
 const mapDispatchToProps = {
   createText,
-  fetchWiki
+  fetchWiki,
 }
 
 export default connect(null, mapDispatchToProps)(FormTexts);

@@ -1,4 +1,5 @@
-import {CREATE_TEXT, FETCH_TEXT} from "./types";
+import {CREATE_TEXT, DELETE_FETCH_TEXT, FETCH_TEXT} from "./types";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export function createText(title) {
@@ -15,7 +16,14 @@ export function fetchWiki(search) {
     const response = await fetch(url);
     const json = await response.json();
     const wiki = []
-    json.forEach((item, key) => wiki.push({title: json[1][key], url: json[3][key]}));
+    json.forEach((item, key) => wiki.push({id: uuidv4(),title: json[1][key], url: json[3][key]}));
     dispatch({type: FETCH_TEXT, payload: wiki})
+  }
+}
+
+export function deleteFetchItem(id) {
+  return {
+    type: DELETE_FETCH_TEXT,
+    payload: id
   }
 }
