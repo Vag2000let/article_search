@@ -40,6 +40,4 @@ code {
 
 .button-clear {
   color: red;
-  transition: transform 5s ease;
-  transform: rotate(360deg);
 }

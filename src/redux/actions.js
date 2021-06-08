@@ -10,13 +10,13 @@ export function createText(title) {
 }
 
 export function fetchWiki(search) {
-  const url = `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search=${search}&namespace=0&limit=5`;
+  const url = `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${search}&limit=15&namespace=*&format=json`;
 
   return async dispatch => {
     const response = await fetch(url);
     const json = await response.json();
     const wiki = []
-    json.forEach((item, key) => wiki.push({id: uuidv4(),title: json[1][key], url: json[3][key]}));
+    json[1].forEach((value, key) => wiki.push({id: uuidv4(), title: json[1][key], url: json[3][key]}))
     dispatch({type: FETCH_TEXT, payload: wiki})
   }
 }

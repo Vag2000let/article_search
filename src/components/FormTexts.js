@@ -6,6 +6,7 @@ import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import {createText, fetchWiki} from "../redux/actions";
 import Texts from "./Texts";
 
+
 class FormTexts extends React.Component {
   constructor(props) {
     super(props);
@@ -41,6 +42,9 @@ class FormTexts extends React.Component {
 
   fetchHandler = (e) => {
     const search = this.state.title
+    if (search === '') {
+      return
+    }
     this.props.fetchWiki(search)
   };
 
