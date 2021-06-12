@@ -1,8 +1,10 @@
-import {CREATE_TEXT, DELETE_FETCH_TEXT, FETCH_TEXT} from "./types";
+import {CREATE_TEXT, DELETE_FETCH_TEXT, FETCH_MODAL_TEXT, FETCH_TEXT, HIDE_LOADING, SHOW_LOADING} from "./types";
 
 const initialState = {
   texts: [],
-  fetchTexts: []
+  fetchTexts: [],
+  fetchModalTexts: [],
+  loading: false
 }
 
 export const rootReducer = (state = initialState, action) => {
@@ -13,6 +15,12 @@ export const rootReducer = (state = initialState, action) => {
       return {fetchTexts: action.payload};
     case DELETE_FETCH_TEXT:
       return {fetchTexts: state.fetchTexts.filter(item => item.id !== action.payload)};
+    case SHOW_LOADING:
+      return {...state, loading: true};
+    case HIDE_LOADING:
+      return {...state, loading: false};
+    case FETCH_MODAL_TEXT:
+      return {fetchModalTexts: action.payload};
     default:
       return state;
   }
