@@ -46,9 +46,11 @@ export function fetchModalText(title) {
     const json = await response.json();
     // console.log(json.query["pages"])
     const s = _.map(json.query["pages"], "revisions")
-    const modal = _.map(s[0][0], (item) => {
-      return item
-    })
+    const modal = _.head(
+      _.map(s[0][0], (item) => {
+        return item;
+      })
+    );
     dispatch({type: FETCH_MODAL_TEXT, payload: modal})
     dispatch(hideLoader())
     console.log("I am modal action", modal)

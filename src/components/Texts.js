@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Texts({wikiTexts}, {modalTexts}) {
+function Texts({wikiTexts}, modalTexts) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -120,7 +120,7 @@ function Texts({wikiTexts}, {modalTexts}) {
               <Divider/>
               <DialogContent>
                 <Loader/>
-                {modalTexts && modalTexts.pop()}
+                <div dangerouslySetInnerHTML={{__html: modalTexts}}/>
               </DialogContent>
               <Divider/>
               <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>

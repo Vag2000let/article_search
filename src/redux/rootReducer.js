@@ -3,7 +3,7 @@ import {CREATE_TEXT, DELETE_FETCH_TEXT, FETCH_MODAL_TEXT, FETCH_TEXT, HIDE_LOADI
 const initialState = {
   texts: [],
   fetchTexts: [],
-  fetchModalTexts: [],
+  fetchModalTexts: undefined,
   loading: false
 }
 
@@ -20,7 +20,7 @@ export const rootReducer = (state = initialState, action) => {
     case HIDE_LOADING:
       return {...state, loading: false};
     case FETCH_MODAL_TEXT:
-      return {fetchModalTexts: action.payload};
+      return {...state, fetchModalTexts: action.payload};
     default:
       return state;
   }
