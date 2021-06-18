@@ -16,9 +16,9 @@ export const rootReducer = (state = initialState, action) => {
     case DELETE_FETCH_TEXT:
       return {fetchTexts: state.fetchTexts.filter(item => item.id !== action.payload)};
     case SHOW_LOADING:
-      return {...state, loading: true};
+      return {...state, loading: action.payload};
     case HIDE_LOADING:
-      return {...state, loading: false};
+      return {...state, loading: action.payload};
     case FETCH_MODAL_TEXT:
       return {...state, fetchModalTexts: action.payload};
     default:

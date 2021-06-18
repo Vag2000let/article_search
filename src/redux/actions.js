@@ -30,11 +30,11 @@ export function deleteFetchItem(id) {
 }
 
 export function showLoader () {
-  return {type: SHOW_LOADING}
+  return {type: SHOW_LOADING, payload: true}
 }
 
 export function hideLoader () {
-  return {type: HIDE_LOADING}
+  return {type: HIDE_LOADING, payload: false}
 }
 
 export function fetchModalText(title) {
@@ -51,8 +51,8 @@ export function fetchModalText(title) {
         return item;
       })
     );
-    dispatch({type: FETCH_MODAL_TEXT, payload: modal})
-    dispatch(hideLoader())
-    console.log("I am modal action", modal)
+    dispatch({type: FETCH_MODAL_TEXT, payload: modal});
+    dispatch(hideLoader());
+    // console.log("I am modal action", modal)
   }
 }
