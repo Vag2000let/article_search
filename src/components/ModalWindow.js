@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Loader from "./Loader";
-import {fetchModalText} from "../redux/actions";
+import {fetchModalText, deleteModalText} from "../redux/actions";
 
 const styles = (theme) => ({
     root: {
@@ -53,30 +53,31 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 
-function ModalWindow(props) {
-    const [open, setOpen] = useState(false);
+function ModalWindow({title, modalClose}) {
     const dispatch = useDispatch();
-    const modalTexts = useSelector(state => state.fetchModalTexts)
+    const modalTexts = useSelector(state => state.fetch.fetchModalTexts)
 
     const handleClose = () => {
-        setOpen(false);
+        modalClose();
+        dispatch(deleteModalText());
     };
 
-    const handleClick = (title) => {
+    useEffect(() => {
         if (title !== undefined) {
-            dispatch(fetchModalText(title))
-            setOpen(true);
+            dispatch(fetchModalText(title));
         }
-    }
-    // console.log("I am props", props)
-    console.log("I am ModalWindow")
+    }, [title, dispatch]);
+
+    // console.log("I am ModalWindow")
 
     return (
         <div>
-            <Button onClick={handleClick.bind(this, props.title)}>{props.title}</Button>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+            <Dialog
+                onClose={handleClose}
+                aria-labelledby="customized-dialog-title"
+                open={!!title}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    {props.title}
+                    {title}
                 </DialogTitle>
                 <DialogContent dividers>
                     <Loader/>

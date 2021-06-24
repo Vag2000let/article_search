@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Texts() {
-    const wikiTexts = useSelector(state => state.fetchTexts)
+    const wikiTexts = useSelector(state => state.fetch.fetchTexts)
     const classes = useStyles();
     const dispatch = useDispatch();
     const deleteHandler = (e) => {
@@ -56,6 +56,7 @@ function Texts() {
 
     const [page, setPage] = useState(1)
     const [pageLength, setPageLength] = useState(5)
+    const [currentItem, setCurrentItem] = useState(undefined)
     const totalPages = Math.ceil(wikiTexts && wikiTexts.length / pageLength)
 
     const items = useMemo(
@@ -75,18 +76,28 @@ function Texts() {
         setPage(value)
     }, []);
 
-    console.log("I am Texts")
+    const closeModal = useCallback(() => {
+        setCurrentItem(undefined)
+    }, []);
+
+    // console.log("I am Texts")
 
     return (
         <Grid container className={classes.root}>
             {items && items.map((item) => (
                 <Grid key={item.id} xs={12} item className={classes.root}>
-                    <Paper className={classes.paper}>
-                        <ModalWindow key={item.id} title={item.title}/>
-                    </Paper>
-                    <Paper className={classes.paper}>
-                        <Button target={"_blank"} href={item.url} variant="text" color="primary">Перейти к
-                            статье</Button>
+                        <Paper className={classes.paper}>
+                            <Button
+                                color={item.color}
+                                onClick={() => {setCurrentItem(item.title)}}
+                            >
+                                {item.title}
+                            </Button>
+                        </Paper>
+                        <Paper className={classes.paper}>
+                        <Button target={"_blank"} href={item.url} variant="text" color="primary">
+                            Перейти к статье
+                        </Button>
                         <Button variant="text" color="secondary"
                                 onClick={deleteHandler.bind(this, item.id)}>Удалить</Button>
                     </Paper>
@@ -107,6 +118,7 @@ function Texts() {
                 </FormControl>
                 <Pagination count={totalPages} page={page} onChange={handleChange}/>
             </Grid>
+            <ModalWindow title={currentItem} modalClose={closeModal}/>
         </Grid>
     );
 }

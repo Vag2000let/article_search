@@ -4,10 +4,9 @@ import './index.css';
 import FormTexts from './components/FormTexts';
 import reportWebVitals from './reportWebVitals';
 import {applyMiddleware, compose, createStore} from "redux";
-import {rootReducer} from "./redux/rootReducer";
+import rootReducer from "./redux/reducers/rootReducer";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
-
 
 const store = createStore(rootReducer, compose(
   applyMiddleware(

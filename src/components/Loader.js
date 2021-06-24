@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CircularIndeterminate() {
   const classes = useStyles();
 
-  const loading = useSelector(state => state.loading)
+  const loading = useSelector(state => state.loading.loading)
 
     if (loading) {
       return (

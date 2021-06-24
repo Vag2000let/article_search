@@ -1,4 +1,13 @@
-import {CREATE_TEXT, DELETE_FETCH_TEXT, FETCH_MODAL_TEXT, FETCH_TEXT, HIDE_LOADING, SHOW_LOADING} from "./types";
+import {
+  CREATE_TEXT,
+  DELETE_FETCH_TEXT,
+  FETCH_MODAL_TEXT,
+  FETCH_TEXT,
+  HIDE_LOADING,
+  SHOW_LOADING,
+  DELETE_MODAL_TEXT,
+  COLOR_ITEM_TEXT
+} from "./types";
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 
@@ -17,7 +26,12 @@ export function fetchWiki(search) {
     const response = await fetch(url);
     const json = await response.json();
     const wiki = []
-    json[1].forEach((value, key) => wiki.push({id: uuidv4(), title: json[1][key], url: json[3][key]}))
+    json[1].forEach((value, key) => wiki.push({
+      id: uuidv4(),
+      title: json[1][key],
+      url: json[3][key],
+      color: 'secondary'
+    }))
     dispatch({type: FETCH_TEXT, payload: wiki})
   }
 }
@@ -28,6 +42,13 @@ export function deleteFetchItem(id) {
     payload: id
   }
 }
+// export function itemColor(id) {
+//   console.log(id)
+//   return {
+//     type: COLOR_ITEM_TEXT,
+//     payload: id
+//   }
+// }
 
 export function showLoader () {
   return {type: SHOW_LOADING, payload: true}
@@ -55,4 +76,9 @@ export function fetchModalText(title) {
     dispatch(hideLoader());
     // console.log("I am modal action", modal)
   }
+}
+export function deleteModalText() {
+  return {
+    type: DELETE_MODAL_TEXT
+  };
 }
