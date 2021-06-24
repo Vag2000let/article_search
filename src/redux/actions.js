@@ -30,7 +30,7 @@ export function fetchWiki(search) {
       id: uuidv4(),
       title: json[1][key],
       url: json[3][key],
-      color: 'secondary'
+      color: 'default'
     }))
     dispatch({type: FETCH_TEXT, payload: wiki})
   }
@@ -42,13 +42,13 @@ export function deleteFetchItem(id) {
     payload: id
   }
 }
-// export function itemColor(id) {
-//   console.log(id)
-//   return {
-//     type: COLOR_ITEM_TEXT,
-//     payload: id
-//   }
-// }
+export function itemColor(id) {
+  console.log(id)
+  return {
+    type: COLOR_ITEM_TEXT,
+    payload: id
+  }
+}
 
 export function showLoader () {
   return {type: SHOW_LOADING, payload: true}

@@ -8,7 +8,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import {deleteFetchItem} from "../redux/actions";
+import {deleteFetchItem, itemColor} from "../redux/actions";
 import ModalWindow from "./ModalWindow";
 
 
@@ -80,16 +80,21 @@ function Texts() {
         setCurrentItem(undefined)
     }, []);
 
+    const changeColor = (item) => {
+        setCurrentItem(item.title)
+        dispatch(itemColor(item.id))
+    }
     // console.log("I am Texts")
 
     return (
         <Grid container className={classes.root}>
             {items && items.map((item) => (
                 <Grid key={item.id} xs={12} item className={classes.root}>
-                        <Paper className={classes.paper}>
+                        <Paper key={item.id} className={classes.paper}>
                             <Button
+                                key={item.id}
                                 color={item.color}
-                                onClick={() => {setCurrentItem(item.title)}}
+                                onClick={changeColor.bind(this, item)}
                             >
                                 {item.title}
                             </Button>
