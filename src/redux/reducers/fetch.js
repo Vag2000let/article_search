@@ -13,9 +13,16 @@ export default function fetch(state = initialState, action) {
         case DELETE_FETCH_TEXT:
             return {fetchTexts: state.fetchTexts.filter(item => item.id !== action.payload)};
         case COLOR_ITEM_TEXT:
-            return {...state, fetchTexts: state.fetchTexts.map(
-                item => item.id === action.payload ? item.color = 'secondary' : item.color = 'default'
-                )};
+            return {
+                ...state, fetchTexts: state.fetchTexts.map(
+                    item => {
+                        if (item.id === action.payload) {
+                            item.color = 'primary'
+                        }
+                        return item
+                    }
+                )
+            };
         case FETCH_MODAL_TEXT:
             return {...state, fetchModalTexts: action.payload};
         default:

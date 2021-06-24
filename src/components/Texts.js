@@ -90,16 +90,16 @@ function Texts() {
         <Grid container className={classes.root}>
             {items && items.map((item) => (
                 <Grid key={item.id} xs={12} item className={classes.root}>
-                        <Paper key={item.id} className={classes.paper}>
-                            <Button
-                                key={item.id}
-                                color={item.color}
-                                onClick={changeColor.bind(this, item)}
-                            >
-                                {item.title}
-                            </Button>
-                        </Paper>
-                        <Paper className={classes.paper}>
+                    <Paper key={item.id} className={classes.paper}>
+                        <Button
+                            key={item.id}
+                            color={item.color}
+                            onClick={changeColor.bind(this, item)}
+                        >
+                            {item.title}
+                        </Button>
+                    </Paper>
+                    <Paper className={classes.paper}>
                         <Button target={"_blank"} href={item.url} variant="text" color="primary">
                             Перейти к статье
                         </Button>
