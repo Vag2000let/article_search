@@ -19,9 +19,8 @@ export function createText(title) {
   }
 }
 
-export function fetchWiki(search) {
-    const url = `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${search}&limit=15&namespace=*&format=json`;
-
+export function fetchWiki({search, language}) {
+    const url = `https://${language}.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${search}&limit=15&namespace=*&format=json`;
     return async dispatch => {
         const response = await fetch(url);
         const json = await response.json();
@@ -60,7 +59,6 @@ export function hideLoader() {
 
 export function fetchModalText(title) {
     const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&titles=${title}&rvprop=content&format=json&rvsection=0&rvparse=1`;
-
     return async dispatch => {
         dispatch(showLoader())
         const response = await fetch(url);
@@ -74,7 +72,6 @@ export function fetchModalText(title) {
         );
         dispatch({type: FETCH_MODAL_TEXT, payload: modal});
         dispatch(hideLoader());
-        // console.log("I am modal action", modal)
     }
 }
 

@@ -1,34 +1,34 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Button, IconButton, InputBase, Paper} from "@material-ui/core";
+import {IconButton, InputBase, Paper} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import {createText, fetchWiki} from "../redux/actions";
 import Texts from "./Texts";
+import LanguageButton from "./LanguageButton";
+import clickLanguage from "./LanguageButton"
 
 
 class FormTexts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ''
+      title: '',
+      language: ''
     }
   }
 
   submitHandler = event => {
     event.preventDefault();
 
-    const {title} = this.state
+    const {title} = this.state.title
 
-    if (!title.trim()) {
-      return
-    }
+    // if (!title.trim()) {
+    //   return
+    // }
 
-    const newTitle = {
-      title
-    }
 
-    this.props.createText(newTitle)
+    this.props.createText(title)
     this.setState({title: ''})
   }
 
@@ -39,15 +39,21 @@ class FormTexts extends React.Component {
       }
     }))
   }
-
   fetchHandler = (e) => {
+    const language = this.state.language
     const search = this.state.title
     if (search === '') {
       return
     }
-    this.props.fetchWiki(search)
+    this.props.fetchWiki({search, language})
   };
 
+  onclickLanguage = (language) => {
+    this.setState({language: language})
+  }
+  clear = () => {
+    this.setState({title: ""})
+  }
 
   render() {
     return (
@@ -67,11 +73,10 @@ class FormTexts extends React.Component {
             placeholder="Введите запрос"
             onChange={this.changeInputText}
           />
-          <Button className={"button"} variant="text" size={"small"}>RU</Button>
-          <Button className={"button"} variant="text" size={"small"}>EN</Button>
+          <LanguageButton onclickLanguage={this.onclickLanguage}/>
           <IconButton
             aria-label="delete"
-            onClick={() => this.setState({title: ""})}
+            onClick={this.clear}
           >
             <CancelOutlinedIcon
               fontSize={"small"}
@@ -93,10 +98,10 @@ class FormTexts extends React.Component {
   }
 }
 
-
 const mapDispatchToProps = {
   createText,
   fetchWiki,
+  clickLanguage
 }
 
 export default connect(null, mapDispatchToProps)(FormTexts);
