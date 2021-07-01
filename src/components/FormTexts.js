@@ -21,7 +21,7 @@ class FormTexts extends React.Component {
   submitHandler = event => {
     event.preventDefault();
 
-    const {title} = this.state.title
+    const title = this.state.title
 
     // if (!title.trim()) {
     //   return
@@ -98,10 +98,10 @@ class FormTexts extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps = (dispatch) => ({
   createText,
-  fetchWiki,
+  fetchWiki: (payload) => dispatch(fetchWiki(payload)),
   clickLanguage
-}
+})
 
 export default connect(null, mapDispatchToProps)(FormTexts);

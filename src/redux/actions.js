@@ -2,13 +2,11 @@ import {
     CREATE_TEXT,
     DELETE_FETCH_TEXT,
     FETCH_MODAL_TEXT,
-    FETCH_TEXT,
     HIDE_LOADING,
     SHOW_LOADING,
     DELETE_MODAL_TEXT,
     COLOR_ITEM_TEXT
 } from "./types";
-import {v4 as uuidv4} from 'uuid';
 import _ from 'lodash';
 
 
@@ -19,21 +17,21 @@ export function createText(title) {
   }
 }
 
-export function fetchWiki({search, language}) {
-    const url = `https://${language}.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${search}&limit=15&namespace=*&format=json`;
-    return async dispatch => {
-        const response = await fetch(url);
-        const json = await response.json();
-        const wiki = []
-        json[1].forEach((value, key) => wiki.push({
-            id: uuidv4(),
-            title: json[1][key],
-            url: json[3][key],
-            color: 'default'
-        }))
-        dispatch({type: FETCH_TEXT, payload: wiki})
-    }
-}
+// export function fetchWiki({search, language}) {
+//     const url = `https://${language}.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${search}&limit=15&namespace=*&format=json`;
+//     return async dispatch => {
+//         const response = await fetch(url);
+//         const json = await response.json();
+//         const wiki = []
+//         json[1].forEach((value, key) => wiki.push({
+//             id: uuidv4(),
+//             title: json[1][key],
+//             url: json[3][key],
+//             color: 'default'
+//         }))
+//         dispatch({type: FETCH_TEXT, payload: wiki})
+//     }
+// }
 
 export function deleteFetchItem(id) {
     return {
@@ -78,5 +76,12 @@ export function fetchModalText(title) {
 export function deleteModalText() {
     return {
         type: DELETE_MODAL_TEXT
+    };
+}
+
+export function fetchWiki(payload) {
+    return {
+        type: CREATE_TEXT,
+        payload
     };
 }
