@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Texts() {
     const wikiTexts = useSelector(state => state.fetch.fetchTexts)
+    // console.log(wikiTexts)
     const classes = useStyles();
     const dispatch = useDispatch();
     const deleteHandler = (e) => {
@@ -66,7 +67,7 @@ function Texts() {
             return false;
         }), [page, wikiTexts, pageLength]
     );
-    // console.log("I am items", items)
+    console.log("I am items", items)
 
     useEffect(() => {
         setPage(1);

@@ -9,16 +9,17 @@ import rootReducer from "./redux/reducers/rootReducer";
 import './index.css';
 import {Provider} from "react-redux";
 import rootSaga from "./redux/sagas/index";
+import {store} from "./toolkitRedux";
 
-const saga = createSagaMiddleware()
-const store = createStore(rootReducer, compose(
-  applyMiddleware(
-    thunk, saga
-  ),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-))
+// const saga = createSagaMiddleware()
+// const store = createStore(rootReducer, compose(
+//   applyMiddleware(
+//     thunk, saga
+//   ),
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// ))
 
-saga.run(rootSaga)
+// saga.run(rootSaga)
 
 const app = (
   <Provider store={store}>
