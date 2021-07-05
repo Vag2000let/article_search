@@ -1,13 +1,12 @@
 import {
     CREATE_TEXT,
     DELETE_FETCH_TEXT,
-    FETCH_MODAL_TEXT,
     HIDE_LOADING,
     SHOW_LOADING,
     DELETE_MODAL_TEXT,
-    COLOR_ITEM_TEXT
+    COLOR_ITEM_TEXT,
+    FETCH_TITLE
 } from "./types";
-import _ from 'lodash';
 
 
 export function createText(title) {
@@ -55,23 +54,23 @@ export function hideLoader() {
     return {type: HIDE_LOADING, payload: false}
 }
 
-export function fetchModalText(title) {
-    const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&titles=${title}&rvprop=content&format=json&rvsection=0&rvparse=1`;
-    return async dispatch => {
-        dispatch(showLoader())
-        const response = await fetch(url);
-        const json = await response.json();
-        // console.log(json.query["pages"])
-        const s = _.map(json.query["pages"], "revisions")
-        const modal = _.head(
-            _.map(s[0][0], (item) => {
-                return item;
-            })
-        );
-        dispatch({type: FETCH_MODAL_TEXT, payload: modal});
-        dispatch(hideLoader());
-    }
-}
+// export function fetchModalText(title) {
+//     const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&titles=${title}&rvprop=content&format=json&rvsection=0&rvparse=1`;
+//     return async dispatch => {
+//         dispatch(showLoader())
+//         const response = await fetch(url);
+//         const json = await response.json();
+//         // console.log(json.query["pages"])
+//         const s = _.map(json.query["pages"], "revisions")
+//         const modal = _.head(
+//             _.map(s[0][0], (item) => {
+//                 return item;
+//             })
+//         );
+//         dispatch({type: FETCH_MODAL_TEXT, payload: modal});
+//         dispatch(hideLoader());
+//     }
+// }
 
 export function deleteModalText() {
     return {
@@ -83,5 +82,11 @@ export function fetchWiki(payload) {
     return {
         type: CREATE_TEXT,
         payload
+    };
+}
+export function fetchModal(title) {
+    return {
+        type: FETCH_TITLE,
+        payload: title
     };
 }

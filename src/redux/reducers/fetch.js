@@ -3,7 +3,7 @@ import {FETCH_TEXT, FETCH_MODAL_TEXT, DELETE_FETCH_TEXT, COLOR_ITEM_TEXT} from "
 
 const initialState = {
     fetchTexts: [],
-    fetchModalTexts: undefined
+    fetchModalTexts: [{title: undefined, text: undefined}]
 }
 
 export default function fetch(state = initialState, action) {

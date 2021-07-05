@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Loader from "./Loader";
-import {fetchModalText, deleteModalText} from "../redux/actions";
+import {deleteModalText, fetchModal} from "../redux/actions";
 
 const styles = (theme) => ({
     root: {
@@ -64,7 +64,7 @@ function ModalWindow({title, modalClose}) {
 
     useEffect(() => {
         if (title !== undefined) {
-            dispatch(fetchModalText(title));
+            dispatch(fetchModal(title));
         }
     }, [title, dispatch]);
 
