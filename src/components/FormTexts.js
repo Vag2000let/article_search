@@ -14,7 +14,7 @@ class FormTexts extends React.Component {
     super(props);
     this.state = {
       title: '',
-      language: ''
+      language: 'ru'
     }
   }
 

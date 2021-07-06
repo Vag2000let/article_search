@@ -11,9 +11,7 @@ const LanguageButton = ({onclickLanguage}) => {
         onclickLanguage(e.language);
         setButton(
             button.map(item => {
-                if (e.id !== item.id) {
-                    item.disabled = true
-                }
+                e.language === item.language ? item.disabled = true: item.disabled = false
                 return item
             }))
     }
