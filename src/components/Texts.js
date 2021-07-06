@@ -54,7 +54,6 @@ function Texts() {
     const deleteHandler = (e) => {
         dispatch(deleteFetchItem(e))
     }
-
     const [page, setPage] = useState(1)
     const [pageLength, setPageLength] = useState(5)
     const [currentItem, setCurrentItem] = useState(undefined)
@@ -67,7 +66,7 @@ function Texts() {
             return false;
         }), [page, wikiTexts, pageLength]
     );
-    console.log("I am items", items)
+    // console.log("I am items", items)
 
     useEffect(() => {
         setPage(1);

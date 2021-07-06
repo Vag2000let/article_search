@@ -1,14 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
-import thunk from "redux-thunk";
-import createSagaMiddleware from "redux-saga";
 import reportWebVitals from './reportWebVitals';
-import {applyMiddleware, compose, createStore} from "redux";
 import FormTexts from './components/FormTexts';
-import rootReducer from "./redux/reducers/rootReducer";
 import './index.css';
 import {Provider} from "react-redux";
-import rootSaga from "./redux/sagas/index";
 import {store} from "./toolkitRedux";
 
 // const saga = createSagaMiddleware()
