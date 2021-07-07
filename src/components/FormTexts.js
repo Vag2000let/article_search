@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 import {IconButton, InputBase, Paper} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import {createText, fetchWiki} from "../redux/actions";
+// import {createText, fetchWiki} from "../redux/actions";
 import Texts from "./Texts";
 import LanguageButton from "./LanguageButton";
 import clickLanguage from "./LanguageButton"
+import {texts} from "../toolkitRedux/textsReducer";
 
 
 class FormTexts extends React.Component {
@@ -28,7 +29,7 @@ class FormTexts extends React.Component {
     // }
 
 
-    this.props.createText(title)
+    texts(title)
     this.setState({title: ''})
   }
 
@@ -99,8 +100,8 @@ class FormTexts extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  createText,
-  fetchWiki: (payload) => dispatch(fetchWiki(payload)),
+  texts,
+  fetchWiki: (payload) => dispatch(texts(payload)),
   clickLanguage
 })
 

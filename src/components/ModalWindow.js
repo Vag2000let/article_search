@@ -10,7 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Loader from "./Loader";
-import {deleteModalText, fetchModal} from "../redux/actions";
+// import {deleteModalText,fetchModal} from "../redux/actions";
+import {fetchModalText} from "../toolkitRedux/fetchReducer";
 
 const styles = (theme) => ({
     root: {
@@ -59,12 +60,13 @@ function ModalWindow({title, modalClose}) {
 
     const handleClose = () => {
         modalClose();
-        dispatch(deleteModalText());
+        // вылетала ошибка
+        // dispatch(deleteModalText);
     };
 
     useEffect(() => {
         if (title !== undefined) {
-            dispatch(fetchModal(title));
+            dispatch(fetchModalText(title));
         }
     }, [title, dispatch]);
 

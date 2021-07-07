@@ -8,7 +8,8 @@ import Pagination from '@material-ui/lab/Pagination';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import {deleteFetchItem, itemColor} from "../redux/actions";
+// import {deleteFetchItem, itemColor} from "../redux/actions";
+import {colorItem, deleteFetchItem} from "../toolkitRedux/fetchReducer";
 import ModalWindow from "./ModalWindow";
 
 
@@ -82,7 +83,7 @@ function Texts() {
 
     const changeColor = (item) => {
         setCurrentItem(item.title)
-        dispatch(itemColor(item.id))
+        dispatch(colorItem(item.id))
     }
     // console.log("I am Texts")
 

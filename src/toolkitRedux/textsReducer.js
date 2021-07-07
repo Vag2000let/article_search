@@ -1,12 +1,11 @@
-import {createAction, createReducer, createSlice, createSelector, createDraftSafeSelector} from "@reduxjs/toolkit";
-import {CREATE_TEXT} from "../redux/types";
-
+import {createSlice} from "@reduxjs/toolkit";
+import {draftSafeSelector} from "../redux/selectors/textsSelector";
 
 // const initialState = {
 //     texts: []
 // }
 
-const texts = createAction(CREATE_TEXT)
+// const textsAction = createAction(CREATE_TEXT)
 
 // export default createReducer(initialState, {
 //     [texts]: (state, action) => {
@@ -14,19 +13,23 @@ const texts = createAction(CREATE_TEXT)
 //         return state
 //     }
 // })
-const textsState = (state) => state.texts
 // const unsafeSelector = createSelector(textsState, (state) => state.value)
-const draftSafeSelector = createDraftSafeSelector(textsState, (state) => state.value)
 const textsSlice = createSlice({
     name: 'createText',
     initialState: {
         texts: draftSafeSelector
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(texts, (state, action) => {
-                state.texts = action.payload
-            })
+    reducers: {
+        texts: (state, action) => {
+            state.texts = action.payload;
+        },
     }
+    // extraReducers: (builder) => {
+    //     builder
+    //         .addCase(textsAction, (state, action) => {
+    //             state.texts = action.payload
+    //         })
+    // }
 })
-export default textsSlice.reducer
+export default textsSlice.reducer;
+export const {texts} = textsSlice.actions;

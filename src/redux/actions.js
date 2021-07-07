@@ -1,20 +1,20 @@
-import {
-    CREATE_TEXT,
-    DELETE_FETCH_TEXT,
-    HIDE_LOADING,
-    SHOW_LOADING,
-    DELETE_MODAL_TEXT,
-    COLOR_ITEM_TEXT,
-    FETCH_TITLE
-} from "./types";
+// import {
+//     CREATE_TEXT,
+//     DELETE_FETCH_TEXT,
+//     HIDE_LOADING,
+//     SHOW_LOADING,
+//     DELETE_MODAL_TEXT,
+//     COLOR_ITEM_TEXT,
+//     FETCH_TITLE
+// } from "./types";
 
 
-export function createText(title) {
-  return {
-    type: CREATE_TEXT,
-    payload: title
-  }
-}
+// export function createText(title) {
+//   return {
+//     type: CREATE_TEXT,
+//     payload: title
+//   }
+// }
 
 // export function fetchWiki({search, language}) {
 //     const url = `https://${language}.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${search}&limit=15&namespace=*&format=json`;
@@ -32,27 +32,27 @@ export function createText(title) {
 //     }
 // }
 
-export function deleteFetchItem(id) {
-    return {
-        type: DELETE_FETCH_TEXT,
-        payload: id
-    }
-}
+// export function deleteFetchItem(id) {
+//     return {
+//         type: DELETE_FETCH_TEXT,
+//         payload: id
+//     }
+// }
 
-export function itemColor(id) {
-    return {
-        type: COLOR_ITEM_TEXT,
-        payload: id
-    }
-}
+// export function itemColor(id) {
+//     return {
+//         type: COLOR_ITEM_TEXT,
+//         payload: id
+//     }
+// }
 
-export function showLoader() {
-    return {type: SHOW_LOADING, payload: true}
-}
-
-export function hideLoader() {
-    return {type: HIDE_LOADING, payload: false}
-}
+// export function showLoader() {
+//     return {type: SHOW_LOADING, payload: true}
+// }
+//
+// export function hideLoader() {
+//     return {type: HIDE_LOADING, payload: false}
+// }
 
 // export function fetchModalText(title) {
 //     const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&titles=${title}&rvprop=content&format=json&rvsection=0&rvparse=1`;
@@ -72,21 +72,21 @@ export function hideLoader() {
 //     }
 // }
 
-export function deleteModalText() {
-    return {
-        type: DELETE_MODAL_TEXT
-    };
-}
+// export function deleteModalText() {
+//     return {
+//         type: DELETE_MODAL_TEXT
+//     };
+// }
 
-export function fetchWiki(payload) {
-    return {
-        type: CREATE_TEXT,
-        payload
-    };
-}
-export function fetchModal(title) {
-    return {
-        type: FETCH_TITLE,
-        payload: title
-    };
-}
+// export function fetchWiki(payload) {
+//     return {
+//         type: CREATE_TEXT,
+//         payload
+//     };
+// }
+// export function fetchModal(title) {
+//     return {
+//         type: FETCH_TITLE,
+//         payload: title
+//     };
+// }

@@ -1,5 +1,4 @@
-import {createAction, createReducer, createSlice} from "@reduxjs/toolkit";
-import {COLOR_ITEM_TEXT, DELETE_FETCH_TEXT, FETCH_MODAL_TEXT, FETCH_TEXT} from "../redux/types";
+import {createSlice} from "@reduxjs/toolkit";
 
 
 // const initialState = {
@@ -7,10 +6,10 @@ import {COLOR_ITEM_TEXT, DELETE_FETCH_TEXT, FETCH_MODAL_TEXT, FETCH_TEXT} from "
 //     fetchModalTexts: undefined
 // }
 
-const fetchText = createAction(FETCH_TEXT)
-const deleteFetchText = createAction(DELETE_FETCH_TEXT)
-const colorItem = createAction(COLOR_ITEM_TEXT)
-const fetchModalText = createAction(FETCH_MODAL_TEXT)
+// const fetchText = createAction(FETCH_TEXT)
+// const deleteFetchText = createAction(DELETE_FETCH_TEXT)
+// const colorItem = createAction(COLOR_ITEM_TEXT)
+// const fetchModalText = createAction(FETCH_MODAL_TEXT)
 
 // export default createReducer(initialState,{
 //     [fetchText]: (state, action) => {
@@ -44,28 +43,52 @@ const fetchSlice = createSlice({
         fetchTexts: [],
         fetchModalTexts: undefined
     },
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(fetchText, (state, action) => {
-                state.fetchTexts = action.payload
-            })
-        builder.addCase(deleteFetchText, (state, action) => {
-                state.fetchTexts = state.fetchTexts.filter(item => item.id !== action.payload)
-            })
-        builder.addCase(fetchModalText, (state, action) => {
-                state.fetchModalTexts = action.payload
-            })
-        builder.addCase(colorItem, (state, action) => {
-                state.fetchTexts = state.fetchTexts.map(
-                    item => {
-                        if (item.id === action.payload) {
-                            item.color = 'primary'
-                        }
-                        return item
+    reducers: {
+        fetchText: (state, action) => {
+            state.fetchTexts = action.payload
+        },
+        deleteFetchItem: (state, action) => {
+            state.fetchTexts = state.fetchTexts.filter(item => item.id !== action.payload)
+        },
+        // deleteModalText: (state) => {
+        //     return state.fetchTexts
+        // },
+        fetchModalText: (state, action) => {
+            state.fetchModalTexts = action.payload
+        },
+        colorItem: (state, action) => {
+            state.fetchTexts = state.fetchTexts.map(
+                item => {
+                    if (item.id === action.payload) {
+                        item.color = 'primary'
                     }
-                )
-            })
+                    return item
+                }
+            )
+        }
     }
 })
-
-export default fetchSlice.reducer
+//     extraReducers: (builder) => {
+//         builder.addCase(fetchText, (state, action) => {
+//                 state.fetchTexts = action.payload
+//             })
+//         builder.addCase(deleteFetchText, (state, action) => {
+//                 state.fetchTexts = state.fetchTexts.filter(item => item.id !== action.payload)
+//             })
+//         builder.addCase(fetchModalText, (state, action) => {
+//                 state.fetchModalTexts = action.payload
+//             })
+//         builder.addCase(colorItem, (state, action) => {
+//                 state.fetchTexts = state.fetchTexts.map(
+//                     item => {
+//                         if (item.id === action.payload) {
+//                             item.color = 'primary'
+//                         }
+//                         return item
+//                     }
+//                 )
+//             })
+//     }
+// })
+export default fetchSlice.reducer;
+export const {fetchText, deleteFetchItem, fetchModalText, colorItem} = fetchSlice.actions
