@@ -16,15 +16,14 @@ import {hideLoading, showLoading} from "../../toolkitRedux/loadingReducer";
 export function* fetchWorker({payload}) {
     const wiki = yield call(fetchWiki, payload);
     // console.log(wiki)
-    yield put({type: fetchText, payload: wiki})
+    yield put(fetchText(wiki))
 }
 
 export function* fetchModalWorker({payload}) {
-    yield put({type: showLoading, payload: true})
+    yield put(showLoading(true))
     const modal = yield call(fetchModal, payload)
-    yield put({type: fetchModalText, payload: modal})
-    yield put({type: hideLoading, payload: false})
-
+    yield put(fetchModalText(modal))
+    yield put(hideLoading(false))
 }
 
 export function* sagaWatcher() {

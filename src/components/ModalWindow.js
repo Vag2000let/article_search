@@ -77,7 +77,8 @@ function ModalWindow({title, modalClose}) {
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
-                open={!!title}>
+                open={!!title}
+            >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     {title}
                 </DialogTitle>

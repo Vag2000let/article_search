@@ -30,9 +30,11 @@ const loadingSlice = createSlice({
     reducers: {
         showLoading: (state, action) => {
             state.loading = action.payload
+            return state
         },
         hideLoading: (state, action) => {
             state.loading = action.payload
+            return state
         }
     }
 })

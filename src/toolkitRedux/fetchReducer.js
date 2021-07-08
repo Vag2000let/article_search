@@ -47,10 +47,13 @@ const fetchSlice = createSlice({
         fetchText: (state, action) => {
             console.log("I am fetchText")
             state.fetchTexts = action.payload
+            return state
         },
         deleteFetchItem: (state, action) => {
             state.fetchTexts = state.fetchTexts.filter(item => item.id !== action.payload)
             console.log("I am deleteFetchItem")
+            return state
+
         },
         // deleteModalText: (state) => {
         //     return state.fetchTexts
@@ -58,6 +61,8 @@ const fetchSlice = createSlice({
         fetchModalText: (state, action) => {
             state.fetchModalTexts = action.payload
             console.log("I am fetchModalText")
+            return state
+
         },
         colorItem: (state, action) => {
             console.log("I am colorItem")
@@ -69,6 +74,7 @@ const fetchSlice = createSlice({
                     return item
                 }
             )
+            return state
         }
     }
 })
@@ -95,4 +101,4 @@ const fetchSlice = createSlice({
 //     }
 // })
 export default fetchSlice.reducer;
-export const {fetchText, deleteFetchItem, fetchModalText, colorItem} = fetchSlice.actions
+export const {fetchText, deleteFetchItem, fetchModalText, colorItem, openModal} = fetchSlice.actions
