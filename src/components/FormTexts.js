@@ -8,6 +8,8 @@ import Texts from "./Texts";
 import LanguageButton from "./LanguageButton";
 import clickLanguage from "./LanguageButton"
 import {texts} from "../toolkitRedux/textsReducer";
+import {fetchText} from "../toolkitRedux/fetchReducer";
+import {fetchWiki} from "../api/fetch";
 
 
 class FormTexts extends React.Component {
@@ -18,7 +20,6 @@ class FormTexts extends React.Component {
       language: 'ru'
     }
   }
-
   submitHandler = event => {
     event.preventDefault();
 

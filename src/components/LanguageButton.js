@@ -4,6 +4,8 @@ import {v4 as uuidv4} from 'uuid';
 
 
 const LanguageButton = ({onclickLanguage}) => {
+    // const language = useSelector(state => state.texts)
+    // console.log('I\'m language', language.language)
     const [button, setButton] = useState([
         {id: uuidv4(), language: 'ru', disabled: false}, {id: uuidv4(), language: 'en', disabled: false}
     ])

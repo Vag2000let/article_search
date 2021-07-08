@@ -38,25 +38,29 @@ import {createSlice} from "@reduxjs/toolkit";
 // })
 
 const fetchSlice = createSlice({
-    name: 'fetchSlice',
+    name: "fetchSlice",
     initialState: {
         fetchTexts: [],
         fetchModalTexts: undefined
     },
     reducers: {
         fetchText: (state, action) => {
+            console.log("I am fetchText")
             state.fetchTexts = action.payload
         },
         deleteFetchItem: (state, action) => {
             state.fetchTexts = state.fetchTexts.filter(item => item.id !== action.payload)
+            console.log("I am deleteFetchItem")
         },
         // deleteModalText: (state) => {
         //     return state.fetchTexts
         // },
         fetchModalText: (state, action) => {
             state.fetchModalTexts = action.payload
+            console.log("I am fetchModalText")
         },
         colorItem: (state, action) => {
+            console.log("I am colorItem")
             state.fetchTexts = state.fetchTexts.map(
                 item => {
                     if (item.id === action.payload) {

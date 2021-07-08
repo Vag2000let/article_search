@@ -87,6 +87,48 @@ function Texts() {
     }
     // console.log("I am Texts")
 
+    if(wikiTexts.length) {
+        return (
+            <Grid container className={classes.root}>
+                {items && items.map((item) => (
+                    <Grid key={item.id} xs={12} item className={classes.root}>
+                        <Paper key={item.id} className={classes.paper}>
+                            <Button
+                                key={item.id}
+                                color={item.color}
+                                onClick={changeColor.bind(this, item)}
+                            >
+                                {item.title}
+                            </Button>
+                        </Paper>
+                        <Paper className={classes.paper}>
+                            <Button target={"_blank"} href={item.url} variant="text" color="primary">
+                                Перейти к статье
+                            </Button>
+                            <Button variant="text" color="secondary"
+                                    onClick={deleteHandler.bind(this, item.id)}>Удалить</Button>
+                        </Paper>
+                    </Grid>
+                ))}
+                <Grid item xs={12} className={classes.pagination}>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <Select
+                            labelId="demo-simple-select-outlined-label"
+                            id="demo-simple-select-outlined"
+                            value={pageLength}
+                            onChange={(e) => setPageLength(e.target.value)}
+                        >
+                            <MenuItem value={3}>3</MenuItem>
+                            <MenuItem value={5}>5</MenuItem>
+                            <MenuItem value={10}>10</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <Pagination count={totalPages} page={page} onChange={handleChange}/>
+                    <ModalWindow title={currentItem} modalClose={closeModal}/>
+                </Grid>
+            </Grid>
+        )
+    }
     return (
         <Grid container className={classes.root}>
             {items && items.map((item) => (
@@ -109,22 +151,6 @@ function Texts() {
                     </Paper>
                 </Grid>
             ))}
-            <Grid item xs={12} className={classes.pagination}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        value={pageLength}
-                        onChange={(e) => setPageLength(e.target.value)}
-                    >
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
-                        <MenuItem value={10}>10</MenuItem>
-                    </Select>
-                </FormControl>
-                <Pagination count={totalPages} page={page} onChange={handleChange}/>
-            </Grid>
-            <ModalWindow title={currentItem} modalClose={closeModal}/>
         </Grid>
     );
 }

@@ -22,7 +22,9 @@ const textsSlice = createSlice({
     reducers: {
         texts: (state, action) => {
             state.texts = action.payload;
+            console.log("I am texts")
         },
+
     }
     // extraReducers: (builder) => {
     //     builder
