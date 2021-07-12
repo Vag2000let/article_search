@@ -17,6 +17,7 @@ class FormTexts extends React.Component {
       title: '',
       language: 'ru'
     }
+    localStorage.setItem('language', this.state.language)
   }
   submitHandler = event => {
     event.preventDefault();
@@ -26,8 +27,6 @@ class FormTexts extends React.Component {
     // if (!title.trim()) {
     //   return
     // }
-
-
     texts(title)
     this.setState({title: ''})
   }
@@ -97,6 +96,8 @@ class FormTexts extends React.Component {
     );
   }
 }
+
+// localStorage.clear()
 
 const mapDispatchToProps = (dispatch) => ({
   texts,

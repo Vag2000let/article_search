@@ -15,12 +15,16 @@ const rootReducer = combineReducers({
 
 const saga = createSagaMiddleware()
 
-export const store = createStore(rootReducer, compose(
+// Первоначальное состояние из localStorage
+const persistedState = localStorage.getItem('wikis')
+    ? JSON.parse(localStorage.getItem('wikis'))
+    : {}
+
+export const store = createStore(rootReducer, persistedState, compose(
     applyMiddleware(
         saga
     ),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ))
-
 
 saga.run(rootSaga)

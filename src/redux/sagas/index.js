@@ -9,7 +9,7 @@ import {takeEvery, put, call} from "redux-saga/effects";
 // } from "../types";
 import {fetchWiki, fetchModal} from "../../api/fetch";
 import {texts} from "../../toolkitRedux/textsReducer";
-import {fetchModalText, fetchText} from "../../toolkitRedux/fetchReducer";
+import {fetchModalText, fetchText, fetchModalAction} from "../../toolkitRedux/fetchReducer";
 import {hideLoading, showLoading} from "../../toolkitRedux/loadingReducer";
 
 
@@ -28,7 +28,7 @@ export function* fetchModalWorker({payload}) {
 
 export function* sagaWatcher() {
     yield takeEvery(texts, fetchWorker)
-    yield takeEvery(fetchModalText, fetchModalWorker)
+    yield takeEvery(fetchModalAction, fetchModalWorker)
 }
 
 export default function* rootSaga() {

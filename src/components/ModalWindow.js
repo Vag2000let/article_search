@@ -11,7 +11,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Loader from "./Loader";
 // import {deleteModalText,fetchModal} from "../redux/actions";
-import {fetchModalText} from "../toolkitRedux/fetchReducer";
+import {fetchModalAction} from "../toolkitRedux/fetchReducer";
 
 const styles = (theme) => ({
     root: {
@@ -60,16 +60,13 @@ function ModalWindow({title, modalClose}) {
 
     const handleClose = () => {
         modalClose();
-        // вылетала ошибка
-        // dispatch(deleteModalText);
     };
 
     useEffect(() => {
         if (title !== undefined) {
-            dispatch(fetchModalText(title));
+            dispatch(fetchModalAction(title));
         }
     }, [title, dispatch]);
-
     // console.log("I am ModalWindow")
 
     return (

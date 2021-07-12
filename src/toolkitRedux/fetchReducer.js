@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createAction, createSlice} from "@reduxjs/toolkit";
 
 
 // const initialState = {
@@ -36,7 +36,7 @@ import {createSlice} from "@reduxjs/toolkit";
 //         return state
 //     }
 // })
-
+export const fetchModalAction = createAction('fetchModal')
 const fetchSlice = createSlice({
     name: "fetchSlice",
     initialState: {
@@ -45,27 +45,23 @@ const fetchSlice = createSlice({
     },
     reducers: {
         fetchText: (state, action) => {
-            console.log("I am fetchText")
+            // console.log("I am fetchText")
             state.fetchTexts = action.payload
             return state
         },
         deleteFetchItem: (state, action) => {
             state.fetchTexts = state.fetchTexts.filter(item => item.id !== action.payload)
-            console.log("I am deleteFetchItem")
+            // console.log("I am deleteFetchItem")
             return state
 
         },
-        // deleteModalText: (state) => {
-        //     return state.fetchTexts
-        // },
         fetchModalText: (state, action) => {
             state.fetchModalTexts = action.payload
-            console.log("I am fetchModalText")
+            // console.log("I am fetchModalText")
             return state
-
         },
         colorItem: (state, action) => {
-            console.log("I am colorItem")
+            // console.log("I am colorItem")
             state.fetchTexts = state.fetchTexts.map(
                 item => {
                     if (item.id === action.payload) {
@@ -101,4 +97,4 @@ const fetchSlice = createSlice({
 //     }
 // })
 export default fetchSlice.reducer;
-export const {fetchText, deleteFetchItem, fetchModalText, colorItem, openModal} = fetchSlice.actions
+export const {fetchText, deleteFetchItem, fetchModalText, colorItem} = fetchSlice.actions
