@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Button from '@material-ui/core/Button';
 import {v4 as uuidv4} from 'uuid';
+import {NavLink} from "react-router-dom";
 
 
 const LanguageButton = ({onclickLanguage}) => {
@@ -33,16 +34,18 @@ const LanguageButton = ({onclickLanguage}) => {
         <div style={{display: 'flex', alignItems: 'center'}}>
             {button.map((item) => (
                 <div key={item.id}>
-                    <Button
-                        key={item.language}
-                        disabled={item.disabled}
-                        className={"button"}
-                        variant="text"
-                        size={"small"}
-                        onClick={clickLanguage.bind(this, item)}
-                    >
-                        {item.language}
-                    </Button>
+                    <NavLink to={item.language}>
+                        <Button
+                            key={item.language}
+                            disabled={item.disabled}
+                            className={"button"}
+                            variant="text"
+                            size={"small"}
+                            onClick={clickLanguage.bind(this, item)}
+                        >
+                            {item.language}
+                        </Button>
+                    </NavLink>
                 </div>
             ))}
         </div>
