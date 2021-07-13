@@ -54,19 +54,18 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 
-function ModalWindow({title, modalClose}) {
+function ModalWindow(props) {
     const dispatch = useDispatch();
     const modalTexts = useSelector(state => state.fetch.fetchModalTexts)
-
     const handleClose = () => {
-        modalClose();
+        props.modalClose();
     };
 
     useEffect(() => {
-        if (title !== undefined) {
-            dispatch(fetchModalAction(title));
+        if (props.title !== undefined) {
+            dispatch(fetchModalAction(props.title));
         }
-    }, [title, dispatch]);
+    }, [props.title, dispatch]);
     // console.log("I am ModalWindow")
 
     return (
@@ -74,10 +73,10 @@ function ModalWindow({title, modalClose}) {
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
-                open={!!title}
+                open={!!props.title}
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    {title}
+                    {props.title}
                 </DialogTitle>
                 <DialogContent dividers>
                     <Loader/>

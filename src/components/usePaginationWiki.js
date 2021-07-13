@@ -35,7 +35,6 @@ export const usePaginationWiki = () => {
     const changeColor = (item) => {
         setCurrentItem(item.title)
         dispatch(colorItem(item.id))
-        return currentItem
     }
 
     return {
@@ -48,5 +47,4 @@ export const usePaginationWiki = () => {
         pageLength,
         currentItem
     }
-
 }

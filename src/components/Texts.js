@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {deleteFetchItem} from "../toolkitRedux/fetchReducer";
 import ModalWindow from "./ModalWindow";
 import {store} from "../toolkitRedux";
-import {usePaginationWiki} from "./PaginationWiki";
+import {usePaginationWiki} from "./usePaginationWiki";
 
 
 const useStyles = makeStyles((theme) => ({
