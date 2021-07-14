@@ -1,30 +1,37 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Button from '@material-ui/core/Button';
 import {v4 as uuidv4} from 'uuid';
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 
 const LanguageButton = ({onclickLanguage}) => {
-    const language = localStorage.getItem('language')
+    const [language, setLanguage] = useState('ru')
     const [button, setButton] = useState([
         {id: uuidv4(), language: 'ru', disabled: false},
         {id: uuidv4(), language: 'en', disabled: false}
     ])
+    // console.log(language)
+    const location = useLocation();
 
     button.map(item => {
-        if (item.language === language) {
-            item.disabled = true
-        }
-        // console.log(item)
+        console.log("i'm button.map")
+        language === item.language ? item.disabled = true : item.disabled = false
+        localStorage.setItem('language', language)
         return item
     })
 
+    useEffect(() => {
+        onclickLanguage(language);
+        console.log("i'm useEffect")
+        setLanguage(location.pathname.slice(1))
+    },[onclickLanguage, language, location])
+
     const clickLanguage = (e) => {
-        onclickLanguage(e.language);
+        console.log("i'm clickLanguage")
+        onclickLanguage(language);
         setButton(
             button.map(item => {
-                e.language === item.language ? item.disabled = true: item.disabled = false
-                localStorage.setItem('language', e.language)
+                e.language === item.language ? item.disabled = true : item.disabled = false
                 return item
             })
         )
@@ -52,4 +59,4 @@ const LanguageButton = ({onclickLanguage}) => {
     )
 }
 
-export default LanguageButton;
+export default React.memo(LanguageButton);

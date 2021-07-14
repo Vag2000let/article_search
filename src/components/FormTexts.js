@@ -15,9 +15,8 @@ class FormTexts extends React.Component {
     super(props);
     this.state = {
       title: '',
-      language: 'ru'
+      language: ''
     }
-    localStorage.setItem('language', this.state.language)
   }
   submitHandler = event => {
     event.preventDefault();
