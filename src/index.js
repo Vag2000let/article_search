@@ -5,7 +5,7 @@ import FormTexts from './components/FormTexts';
 import './index.css';
 import {Provider} from "react-redux";
 import {store} from "./toolkitRedux";
-import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 // const saga = createSagaMiddleware()
 // const store = createStore(rootReducer, compose(
@@ -21,9 +21,8 @@ const app = (
   <Provider store={store}>
     <Router>
         <Switch>
-            <Route exact path='/ru' component={FormTexts}/>
-            <Route path='/en' component={FormTexts}/>
-            <Redirect to="/ru"/>
+            <Route path="/" component={FormTexts}/>
+            <Route path=":language" component={FormTexts}/>
         </Switch>
     </Router>
   </Provider>

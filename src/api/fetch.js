@@ -16,7 +16,7 @@ export async function fetchWiki({search, language}) {
 }
 
 export async function fetchModal(payload) {
-    const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&titles=${payload}&rvprop=content&format=json&rvsection=0&rvparse=1`;
+    const url = `https://${localStorage.getItem('language')}.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&titles=${payload}&rvprop=content&format=json&rvsection=0&rvparse=1`;
     const response = await fetch(url);
     const json = await response.json();
     const s = _.map(json.query["pages"], "revisions")

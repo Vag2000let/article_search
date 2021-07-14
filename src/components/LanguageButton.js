@@ -14,7 +14,7 @@ const LanguageButton = ({onclickLanguage}) => {
     const location = useLocation();
 
     button.map(item => {
-        console.log("i'm button.map")
+        // console.log("i'm button.map")
         language === item.language ? item.disabled = true : item.disabled = false
         localStorage.setItem('language', language)
         return item
@@ -22,12 +22,12 @@ const LanguageButton = ({onclickLanguage}) => {
 
     useEffect(() => {
         onclickLanguage(language);
-        console.log("i'm useEffect")
+        // console.log("i'm useEffect")
         setLanguage(location.pathname.slice(1))
     },[onclickLanguage, language, location])
 
     const clickLanguage = (e) => {
-        console.log("i'm clickLanguage")
+        // console.log("i'm clickLanguage")
         onclickLanguage(language);
         setButton(
             button.map(item => {
